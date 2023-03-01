@@ -19,44 +19,46 @@ const slidesArray = Array.from(slides);
 const totalSlides = slidesArray.length;
 
 function updateSlidePosition() {
-  // Using the .forEach array method, (array.forEach((element) => { per-element work goes here }))
-  // loop through all the slides in your slideArray
-  // and remove the 'visible' class from each classList
-  // then add a class 'hidden' to all of them
-
-  // outside your .forEach,
-  // add a 'visible' class to the slide at the current slidePosition in slides
+  slidesArray.forEach((slide) => {
+    slide.classList.remove('visible');
+    slide.classList.add('hidden');
+  });
+  console.log(slidePosition);
+  slides[slidePosition].classList.add('visible');
 }
 
 function moveToNextSlide() {
-  /*
-    add an if statement here that checks
-    if you're already at the max number of slides
-    and if so, sets your slidePosition to the first index of an array
-    if not, set the slidePosition to the current position plus one
-  */
+  
+if(slidePosition === totalSlides - 1){
+  slidePosition = 0;
+} else {
+  slidePosition += 1;
+}
+
   updateSlidePosition(); // this is how you call a function within a function
 }
 function moveToPrevSlide() {
-  // add your code in here for when you click the "prev" button
-  /*
-    add an if statement here that checks
-    if you're already at the first index position for an array
-    and if so, sets your slidePosition to the last slide position in totalSlides
-    if not, set the slidePosition to the current position minus one
-  */
+  if(slidePosition === 0){
+    slidePosition = totalSlides - 1;
+  } else {
+    slidePosition = slidePosition - 1;
+  }
   updateSlidePosition();
 }
 
-/*
-  These two functions have been assigned via "addEventListener"
-  to the elements accessed by the "querySelector" set to the class name on each
-*/
 document.querySelector('.next') // Get the appropriate element (<button class="next">)
   .addEventListener('click', () => { // set an event listener on it - when it's clicked, do this callback function
     console.log('clicked next'); // let's tell the client console we made it to this point in the script
     moveToNextSlide(); // call the function above to handle this
   });
+
+document.querySelector('.prev')
+  .addEventListener('click', () => {
+    console.log('clicked prev');
+    moveToPrevSlide();
+  });
+
+
 
 // Paying close attention to the above queryselector, write one that fires
 // when you want a "prev" slide

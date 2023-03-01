@@ -73,8 +73,6 @@ form {
   flex:1;
 }
 
-
-
 .header {
   padding-top: 1rem;
   padding-left: 1rem;
@@ -101,7 +99,7 @@ form {
   border-radius: 6px;
   font-size: 1.5rem;
   padding: 1.25rem;
-  margin:0; /* removing the margin on h1 tags means the header pins to the top if we move it around */
+  margin:0; /* removing the margin on h1 tags means the header pins to the top if we move */
 
 
   /* box-shadows are fancy */
@@ -113,7 +111,6 @@ form {
   Rules can be combined on a block to apply the 'cascade' in order
   So you can use two classnames in a single class attribute
   like: <div class="box section">
-
   Rules may combine in unexpected ways - remember that the LAST thing written in this file will have "priority"
   And will be what displays in your client
 */
@@ -196,4 +193,73 @@ form {
 .grid img {
   width: 150px;
   height: 150px;
+}
+
+
+/* Carousel */
+div.carousel {
+  max-width: 300px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.carousel .slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* .carousel_item, */
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.carousel_item img {
+  /* 
+    Setting width, rather than max-width or min-width,
+    means annoying pop-ins won't happen
+    but it also means you need to format your images to be compatible
+    or they will stretch weird
+    - try a tall one and see what happens
+    - change the height on a fixed image size and see what happens
+    - now make sure that images are _always_ square
+    - ... there's a reason crop tools are popular in image editors
+   */
+  width: 150px; 
+}
+
+.prev,
+.next {
+  border: none;
+  margin: 2px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  height: 45px;
+  padding: 10px;
+  line-height: 0; /* This centers a button's text! */
+  border: 2px solid rgb(99,99,99); /* shorthand for how to do a border */
+}
+
+.prev:focus,
+.next:focus {
+  margin: 0;
+  /* Pick a good border colour and check out how it works with your buttons */
+}
+
+.prev:hover,
+.next:hover {
+  /* Pick a good background colour for your hover pseudoclass */
 }
