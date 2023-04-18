@@ -12,8 +12,9 @@ function injectHTML(list) {
   console.log('fired injectHTML')
   const target = document.querySelector('#restaurant_list');
   target.innerHTML = '';
-  list.forEach((item, index) => {
-    const str = `<li>${}</li>`
+  list.forEach((item) => {
+    const str = `<li>${item.name}</li>`;
+    target.innerHTML += str
   })
 }
 
@@ -36,21 +37,17 @@ async function mainEvent() { // the async keyword means we can make API requests
   mainForm.addEventListener('submit', async (submitEvent) => { // async has to be declared on every function that needs to "await" something
     submitEvent.preventDefault(); 
     console.log('form submission'); 
-
    
     // Basic GET request - this replaces the form Action
     const results = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
 
     // This changes the response from the GET into data we can use - an "object"
     currentList = await results.json();
-
-    /*
-      This array initially contains all 1,000 records from your request,
-      but it will only be defined _after_ the request resolves - any filtering on it before that
-      simply won't work.
-    */
     console.table(currentList); 
+    injectHTML(currentList);
   });
+
+
   filterButton.addEventListener('click', (event) => {
     console.log("click filter button");
     const formData = new FormData(mainForm);
