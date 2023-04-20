@@ -13,7 +13,9 @@ function injectHTML(list) {
   const target = document.querySelector('#restaurant_list');
   target.innerHTML = '';
 
+
   list.forEach((item) => {
+    console.log(item)
     const str = `<li>${item.name}</li>`;
     target.innerHTML += str
   })
@@ -56,7 +58,7 @@ async function mainEvent() { // the async keyword means we can make API requests
     // This changes the response from the GET into data we can use - an "object"
     currentList = await results.json();
     console.table(currentList); 
-    injectHTML(currentList);
+    
   });
 
 
@@ -77,7 +79,7 @@ async function mainEvent() { // the async keyword means we can make API requests
   generateListButton.addEventListener('click',(event) => {
     console.log('generate new list');
     const restaurantsList = cutRestaurantList(currentList);
-    injectHTML(restaurantsList)
+    injectHTML(restaurantsList);
   })
 }
 
