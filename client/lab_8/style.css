@@ -1,6 +1,6 @@
 {
     box-sizing: border-box;
-  }
+}
   
   /* 
     These rules apply to actual HTML elements with no labelling!
@@ -106,15 +106,12 @@
     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
   }
   
-  
-  /*
-    Rules can be combined on a block to apply the 'cascade' in order
-    So you can use two classnames in a single class attribute
-    like: <div class="box section">
-  
-    Rules may combine in unexpected ways - remember that the LAST thing written in this file will have "priority"
-    And will be what displays in your client
-  */
+
+  #map {
+    width: 400px;
+    height: 380px;
+    margin-bottom: 1rem;
+  }
   
   .box {
     background-color: rgba(16, 2, 54, 0.349);
